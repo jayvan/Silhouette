@@ -8,5 +8,6 @@ Silhouette was created to help the University of Waterloo's Campus Response Team
 
 ## Libraries ##
 
-Silhouette uses the amazing [Rails Admin](http://github.com/sferif/rails_admin) Admin gem  for initital CRUD operations.
+Silhouette uses the amazing [Rails Admin](http://github.com/sferik/rails_admin) Admin gem  for initital CRUD operations.
+
 The viewing interface uses [Reveal.js](http://github.com/hakimel/reveal.js), for easy and beautiful slideshows.

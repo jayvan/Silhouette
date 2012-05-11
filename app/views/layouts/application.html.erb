@@ -2,13 +2,66 @@
 <html>
 <head>
   <title>Silhouette</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= javascript_include_tag "jquery" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
 <%= yield %>
 
+<script src="assets/reveal.js"></script>
+<script>
+
+    var updateStatus = function(id, value) {
+        $.ajax({
+          type: "PUT",
+          url: "people/" + id,
+          data: { person: { status: value } },
+          headers: { 'X-CSRF-Token': '<%= form_authenticity_token.to_s %>'},
+        });
+        Reveal.navigateRight();
+    };
+  Reveal.initialize({
+    // Display controls in the bottom right corner
+    controls: true,
+
+    // Display a presentation progress bar
+    progress: true,
+
+    // If true; each slide will be pushed to the browser history
+    history: false,
+
+    // Loops the presentation, defaults to false
+    loop: true,
+
+    // Flags if mouse wheel navigation should be enabled
+    mouseWheel: true,
+
+    // Apply a 3D roll to links on hover
+    rollingLinks: false,
+
+    // UI style
+    theme: 'default', // default/neon
+
+    // Transition style
+    transition: 'default' // default/cube/page/concave/linear(2d)
+  });
+  
+  $('.no').bind('click', function(e) {
+    $('.present').attr('data-state', 'Rejected');
+    updateStatus(e.target.parentElement.getAttribute('data-id'), -1);
+  });
+
+  $('.yes').bind('click', function(e) {
+    $('.present').attr('data-state', 'Accepted');
+    updateStatus(e.target.parentElement.getAttribute('data-id'), 1);
+  });
+
+  $('.maybe').bind('click', function(e) {
+    $('.present').attr('data-state', 'Maybe');
+    updateStatus(e.target.parentElement.getAttribute('data-id'), 0);
+  });
+</script>
 </body>
 </html>

@@ -1,1 +1,22 @@
-%h1 Hello World
+#reveal
+  .state-background
+  .slides
+    - @people.each do |person|
+      %section{"data-state" => Person.status_enum.invert[person.status]}
+        %h2= person.name
+        = image_tag person.picture.url(:slideshow), :class => "mugshot"
+        .scores
+          .communication= "Communication: #{person.communication_score} / 10"
+          .practical= "Practical: #{person.practical_score} / 50"
+          .written= "Written: #{person.written_score} / 50"
+        .status_buttons{'data-id' => person.id}
+          .no No
+          .maybe Maybe
+          .yes Yes
+  %aside.controls
+    %a.left.enabled{:href => '#'} ◄
+    %a.right.enabled{:href => '#'} ►
+    %a.up.enabled{:href => '#'} ▲
+    %a.down.enabled{:href => '#'} ▼
+  .progress
+    %span

@@ -11,14 +11,37 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120510222256) do
+ActiveRecord::Schema.define(:version => 20120510232422) do
 
   create_table "people", :force => true do |t|
-    t.text    "first_name"
-    t.text    "last_name"
-    t.integer "practical_score"
-    t.integer "written_score"
-    t.integer "communication_score"
+    t.string  "first_name",          :default => "John", :null => false
+    t.string  "last_name",           :default => "Doe",  :null => false
+    t.integer "practical_score",     :default => 0,      :null => false
+    t.integer "written_score",       :default => 0,      :null => false
+    t.integer "communication_score", :default => 0,      :null => false
+    t.integer "status",              :default => 0,      :null => false
   end
+
+  create_table "rails_admin_histories", :force => true do |t|
+    t.text     "message"
+    t.string   "username"
+    t.integer  "item"
+    t.string   "table"
+    t.integer  "month",      :limit => 2
+    t.integer  "year",       :limit => 5
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
+
+  add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
+
+  create_table "users", :force => true do |t|
+    t.string   "email",                             :default => "", :null => false
+    t.string   "encrypted_password", :limit => 128, :default => "", :null => false
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
+  end
+
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
 
 end

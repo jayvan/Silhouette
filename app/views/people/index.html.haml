@@ -6,9 +6,9 @@
         %h2= person.name
         = image_tag person.picture.url(:slideshow), :class => "mugshot"
         .scores
-          .communication= "Communication: #{person.communication_score} / 10"
-          .practical= "Practical: #{person.practical_score} / 50"
-          .written= "Written: #{person.written_score} / 50"
+          .communication= "Communication: #{person.communication_score} / 28"
+          .practical= "Practical: #{person.practical_score} / 40"
+          .written= "Written: #{person.written_score} / 40"
         .status_buttons{'data-id' => person.id}
           .no No
           .maybe Maybe

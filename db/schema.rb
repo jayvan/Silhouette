@@ -16,9 +16,9 @@ ActiveRecord::Schema.define(:version => 20120511005118) do
   create_table "people", :force => true do |t|
     t.string   "first_name",           :default => "John", :null => false
     t.string   "last_name",            :default => "Doe",  :null => false
-    t.integer  "practical_score",      :default => 0,      :null => false
-    t.integer  "written_score",        :default => 0,      :null => false
-    t.integer  "communication_score",  :default => 0,      :null => false
+    t.float    "practical_score",      :default => 0.0,    :null => false
+    t.float    "written_score",        :default => 0.0,    :null => false
+    t.float    "communication_score",  :default => 0.0,    :null => false
     t.integer  "status",               :default => 0,      :null => false
     t.string   "picture_file_name"
     t.string   "picture_content_type"
